@@ -7,7 +7,14 @@ export const add = (a, b) => {
   return a + b;
 };
 
-export const subtract = (a, b) => a - b;
+export const subtract = (a, b = 0) => {
+  if (Array.isArray(a)) {
+    a = a.reduce((x, y) => {
+      return x - y;
+    });
+  }
+  return a - b;
+};
 
 export const multiply = (a, b) => a * b;
 

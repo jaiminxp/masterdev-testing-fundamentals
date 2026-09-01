@@ -21,11 +21,23 @@ describe('add', () => {
   it('should throw when the second argument cannot be converted into a number', () => {
     expect(() => add(2, 'potato')).toThrow('not a number');
   });
+
+  it('should throw when the first argument is not a number', () => {
+    expect(() => add(NaN, 2)).toThrow('not a number');
+  });
 });
 
 describe('subtract', () => {
   it('should subtract one number from the other', () => {
     expect(subtract(5, 2)).toBe(3);
+  });
+
+  it('should accept an array and subtract all numbers', () => {
+    expect(subtract([10, 5], 2)).toBe(3);
+  });
+
+  it('should default undefined values to 0', () => {
+    expect(subtract(3)).toBe(3);
   });
 });
 
