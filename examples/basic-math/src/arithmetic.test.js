@@ -9,6 +9,18 @@ describe('add', () => {
   it('should add two negative numbers', () => {
     expect(add(-2, -2)).toBe(-4);
   });
+
+  it('should parse strings into numbers', () => {
+    expect(add('2', '2')).toBe(4);
+  });
+
+  it('should throw when the first argument cannot be converted into a number', () => {
+    expect(() => add('potato', 2)).toThrow('not a number');
+  });
+
+  it('should throw when the second argument cannot be converted into a number', () => {
+    expect(() => add(2, 'potato')).toThrow('not a number');
+  });
 });
 
 describe('subtract', () => {
