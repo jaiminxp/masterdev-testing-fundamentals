@@ -39,6 +39,11 @@ describe('subtract', () => {
   it('should default undefined values to 0', () => {
     expect(subtract(3)).toBe(3);
   });
+
+  it('should default to zero if either argument is null', () => {
+    expect(subtract(3,null)).toBe(3)
+    expect(subtract(null, 3)).toBe(-3)
+  })
 });
 
 describe('multiply', () => {
@@ -51,4 +56,8 @@ describe('divide', () => {
   it('should divide two numbers', () => {
     expect(divide(10, 2)).toBe(5);
   });
+
+  it('should return null if dividing by zero', () => {
+    expect(divide(10, 0)).toBeNull()
+  })
 });

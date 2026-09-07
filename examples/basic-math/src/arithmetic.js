@@ -18,4 +18,7 @@ export const subtract = (a, b = 0) => {
 
 export const multiply = (a, b) => a * b;
 
-export const divide = (a, b) => a / b;
+export const divide = (a, b) => {
+  if(b==0) return null
+  return a / b
+};
