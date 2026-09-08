@@ -1,24 +1,44 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, act } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { Counter } from './counter';
 
 import '@testing-library/jest-dom/vitest';
 
-describe.todo('Counter ', () => {
+describe('Counter ', () => {
   beforeEach(() => {
     render(<Counter />);
   });
 
-  it('renders with an initial count of 0');
+  it('renders with an initial count of 0', () => {
+    const counter = screen.getByTestId('counter-count')
+    expect(counter).toHaveTextContent('0')
+  });
 
-  it('disables the "Decrement" and "Reset" buttons when the count is 0');
+  it('disables the "Decrement" and "Reset" buttons when the count is 0', () => {
+    const decrementButton = screen.getByRole('button', { name: /decrement/i })
+    const resetButton = screen.getByRole('button', {name: /reset/i })
 
-  it.todo('displays "days" when the count is 0', () => {});
+    expect(decrementButton).toBeDisabled()
+    expect(resetButton).toBeDisabled()
+  });
 
-  it.todo(
+  it('displays "days" when the count is 0', () => {
+    const unit = screen.getByTestId('counter-unit')
+    expect(unit).toHaveTextContent('days')
+  });
+
+  it(
     'increments the count when the "Increment" button is clicked',
-    async () => {},
+    async () => {
+    const incrementButton = screen.getByRole('button', { name: /increment/i })
+    const counter = screen.getByTestId('counter-count')
+
+    await act(async () => await userEvent.click(incrementButton))
+    
+    expect(counter).toHaveTextContent('1')
+
+    },
   );
 
   it.todo('displays "day" when the count is 1', async () => {});
